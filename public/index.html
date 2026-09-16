@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multiplex Counter</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div class="masthead-top">
+        <p class="kicker">FRIDAY NIGHT AT THE MULTIPLEX</p>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark background" title="Switch background theme">
+          <span aria-hidden="true">☾</span>
+        </button>
+      </div>
+      <h1>Price the next seat<br><em>to the paisa.</em></h1>
+      <p class="lede">A transparent booking counter for full houses and exact totals.</p>
+    </header>
+    <section class="workspace" aria-label="Booking counter">
+      <div class="panel setup-panel">
+        <div class="panel-heading"><span>01</span><h2>Seat classes</h2></div>
+        <div class="catalog-status"><span class="status-dot"></span><span>Catalog loaded and ready</span></div>
+        <p id="import-status" class="status" role="status">Prices are maintained by the cinema catalog.</p>
+        <div class="list-heading"><span>Available classes</span><small>Tap to add</small></div>
+        <div id="price-list" class="price-list" aria-label="Available seat classes"></div>
+        <details class="import-report">
+          <summary>View import audit</summary>
+          <div id="import-report" class="report-body"><p class="empty">Import a price list to see accepted, duplicate, and rejected rows.</p></div>
+        </details>
+      </div>
+      <form id="booking-form" class="panel booking-panel">
+        <div class="panel-heading"><span>02</span><h2>Build booking</h2></div>
+        <label for="seat-classes">Seat classes <small>comma separated</small></label>
+        <input id="seat-classes" value="Silver, Gold" autocomplete="off" aria-describedby="seat-help">
+        <p id="seat-help" class="field-help">Use the class buttons or type names separated by commas.</p>
+        <div class="field-grid">
+          <label for="festival-discount">Festival discount <input id="festival-discount" value="0" inputmode="decimal"></label>
+          <label for="fee">Convenience / ticket <input id="fee" value="2.50" inputmode="decimal"></label>
+          <label for="gst">GST <input id="gst" value="18" inputmode="decimal"></label>
+          <label for="member-percent">Member discount <input id="member-percent" value="10" inputmode="decimal"></label>
+        </div>
+        <label class="check"><input id="member" type="checkbox"> Member pricing (capped at ₹150)</label>
+        <div class="button-row booking-actions">
+          <button id="quote-button" class="button primary" type="submit">Calculate total <span>→</span></button>
+          <button id="clear-button" class="button quiet" type="button">Clear seats</button>
+        </div>
+        <p id="quote-status" class="status" role="status"></p>
+      </form>
+      <aside class="bill" aria-live="polite">
+        <div class="bill-top"><span>YOUR BILL</span><span id="bill-count">0 tickets</span></div>
+        <div id="ticket-lines" class="ticket-lines"><p class="empty">Your line-by-line total will appear here.</p></div>
+        <div class="bill-rows">
+          <div><span>Ticket subtotal</span><strong id="subtotal">₹0.00</strong></div>
+          <div class="discount"><span>Festival discount</span><strong id="festival">-₹0.00</strong></div>
+          <div class="discount"><span>Member discount</span><strong id="member-saving">-₹0.00</strong></div>
+          <div><span>Convenience fee</span><strong id="fee-total">₹0.00</strong></div>
+          <div><span>GST</span><strong id="gst-total">₹0.00</strong></div>
+        </div>
+        <div class="grand-total"><span>Total due</span><strong id="total">₹0.00</strong></div>
+      </aside>
+    </section>
+  </main>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
